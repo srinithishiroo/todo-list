@@ -9,7 +9,7 @@ import Two from "../components/hero";
 import Card from "../components/cards";
 import Hard from "../components/chips";
 import Appp from "../components/todo";
-
+import List from "../components/block";
 function App() {
   const dress = [
     { name: "chudi", price: 500 },
@@ -247,9 +247,7 @@ function App() {
           return <Card key={index} name={dress.name} price={dress.price} />;
         })}
       </div>
-
       <div className="tastee">{renderchips}</div>
-
       {footer}
       <Head />
       <Two />
@@ -257,6 +255,7 @@ function App() {
         <Hard />;
       </div>
       <Appp />
+      <List />
     </React.Fragment>
   );
 }
