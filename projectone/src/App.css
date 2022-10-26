@@ -142,3 +142,20 @@
   justify-content: center;
   align-items: center;
 }
+
+.wrapper {
+  align-items: center;
+  background-color: palevioletred;
+  padding: 50px 450px;
+}
+
+.post {
+  box-sizing: border-box;
+  border-radius: 2px;
+  border: 3px solid black;
+}
+
+.block {
+  display: grid;
+  gap: 20px;
+}
