@@ -26,6 +26,7 @@ const Form = () => {
       {
         title,
         description,
+        image,
       },
     ]);
     setTitle("");
@@ -40,18 +41,19 @@ const Form = () => {
     setPosts(posts.find((add) => add.description !== title));
   };
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    setEdited([
-      ...editId,
-      {
-        title,
-        description,
-      },
-    ]);
-    //setButtonText("Update");
+  const handleClick = () => {
+    console.log(editId);
+    const data = [...posts];
+    data[editId] = {
+      title,
+      description,
+      image,
+    };
+    console.log(data);
+    setPosts([...data]);
     setTitle("");
     setDescription("");
+    setEditId(null);
   };
 
   useEffect(() => {});
@@ -83,6 +85,9 @@ const Form = () => {
                     reader.readAsDataURL(file);
                   }}
                 ></input>
+                <h3>PREVIEW</h3>
+                <img src={image} width="120px" height="150px" />
+                <button onClick={setImage}>DELETE</button>
                 <br></br>
                 <br></br>
                 <label for="title">Title</label>
@@ -111,9 +116,11 @@ const Form = () => {
               </div>
               <br></br>
               {editId === null ? (
-                <button type={addPost}>{buttonText}</button>
+                <button onClick={AddPost}>{buttonText}</button>
               ) : (
-                <button type={handleClick}>Update</button>
+                <button type="button" onClick={handleClick}>
+                  Update
+                </button>
               )}
             </form>
 
@@ -121,7 +128,7 @@ const Form = () => {
             <div className="block">
               {posts.map((item, index) => (
                 <div className="post" key={item.title}>
-                  <img src={image} width="50px" height="50px" />
+                  <img src={image} width="450px" height="450px" />
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
                   <br></br>
@@ -133,12 +140,12 @@ const Form = () => {
                         setEditId(index);
                       }}
                     >
-                      Edit
+                      EDIT
                     </button>
                   </span>
                   <span className="delete">
                     <button onClick={() => removePost(item.title)}>
-                      Delete
+                      DELETE
                     </button>
                   </span>
                 </div>
